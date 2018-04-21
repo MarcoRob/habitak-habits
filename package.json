@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "RESTFUL API to handle the user habit's data for the Habitak App.",
   "scripts": {
-    "test": "mocha",
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/server.js"
+    "test": "mocha --require babel-core/register",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,**/*.test.js --copy-files",
+    "start": "npm run build && node dist/src/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,10 +24,11 @@
     "chai-arrays": "^2.0.0",
     "mocha": "^5.1.1",
     "nodemon": "^1.17.3",
-    "superagent": "^3.8.2"
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "mongoose": "^5.0.14"
   }
