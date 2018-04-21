@@ -36,7 +36,7 @@ export let delete_habit = (req, res) => {
             res.send(err);
         res.json({message: "Habit successfully deleted"});
     });
-}
+};
 
 export let get_habit = (req, res) => {
     Habit.find({ _id: req.params.habitId}, (err, habit) => {
@@ -79,4 +79,4 @@ export let user_delete_habit = (req, res) => {
             res.send(err);
         res.json({ message: "Habit successfully deleted" });
     });
-}
+};
