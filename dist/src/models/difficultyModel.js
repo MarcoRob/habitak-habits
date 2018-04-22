@@ -1,21 +1,29 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var Difficulties = {
+var DifficultiesModel = exports.DifficultiesModel = {
     easy: {
-        name: 'easy',
+        name: "easy",
         score: 2
     },
     medium: {
-        name: 'medium',
+        name: "medium",
         score: 3
     },
     hard: {
-        name: 'hard',
+        name: "hard",
         score: 5
     }
 };
 
-exports.default = Difficulties;
+var diffList = [];
+
+for (var difficulty in DifficultiesModel) {
+    diffList.push(difficulty.name);
+}
+
+var difficultyList = exports.difficultyList = diffList;
+
+var defaultDifficulty = exports.defaultDifficulty = "medium";

@@ -1,17 +1,25 @@
-'use strict'
-const Difficulties = {
+"use strict"
+export const DifficultiesModel = {
     easy: {
-        name: 'easy',
+        name: "easy",
         score: 2
     },
     medium: {
-        name: 'medium',
+        name: "medium",
         score: 3
     },
     hard: {
-        name: 'hard',
+        name: "hard",
         score: 5
     }
 }
 
-export default Difficulties;
+let diffList = []
+
+for(var difficulty in DifficultiesModel) {
+    diffList.push(difficulty.name);
+}
+
+export const difficultyList = diffList;
+
+export const defaultDifficulty = "medium";

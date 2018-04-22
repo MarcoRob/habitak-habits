@@ -1,20 +1,39 @@
-'use strict'
-export function getOrange() {
-    return 'orange darken-1'
-};
+"use strict"
 
-export function getRed() {
-    return 'red darken-1'
-};
+export const ColorModel = {
+    orange: {
+        value: "orange darken-1",
+        minRange: 0,
+        maxRange: 10
+    },
+    red: {
+        value: "red darken-1",
+        minRange: -1*Number.MAX_SAFE_INTEGER,
+        maxRange: 0
+    },
+    yellow: {
+        value: "yellow darken-2",
+        minRange: 10,
+        maxRange: 40
+    },
+    blue: {
+        value: "blue darken-1",
+        minRange: 50,
+        maxRange: Number.MAX_SAFE_INTEGER
+    },
+    green: {
+        value: "light-green  darken-1",
+        minRange: 40,
+        maxRange: 50
+    }
+}
 
-export function getYellow() {
-    return 'yellow darken-2'
-};
+let colList = []
 
-export function getBlue() {
-    return 'blue darken-1'
-};
+for(var color in ColorModel) {
+    colList.push(color.value);
+}
 
-export function getGreen() {
-    return 'light-green  darken-1'
-};
+export const colorList = colList;
+
+export const colorDefault = ColorModel.orange.value;
