@@ -8,16 +8,18 @@ export default function (app) {
         .get(habits.list_all_habits)
         .post(habits.create_habit);
 
-    app.route('/habits/:habitId')
+    app.route('/habits/:habitID')
         .get(habits.get_habit)
         .put(habits.update_habit)
         .delete(habits.delete_habit);
 
-    app.route('/users/:userId/habits')
+    app.route('/users/:userID/habits')
         .get(habits.user_list_all_habits)
+        .delete(habits.user_delete_all_habits);
 
-    app.route('/users/:userId/habits/:habitId')
-        .get(habits.user_get_habit)
-        .put(habits.user_update_habit)
-        .delete(habits.user_delete_habit);
+    app.route('/habits/addscore')
+        .post(habits.add_score);
+
+    app.route('/habits/lowerscore')
+        .post(habits.lower_score);
 }

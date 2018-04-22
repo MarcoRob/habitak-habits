@@ -21,7 +21,7 @@ export let create_habit = (req, res) => {
 };
 
 export let update_habit = (req, res) => {
-    Habit.findOneAndUpdate({_id: req.params.habitId}, req.body, {new: true}, (err, habit) => {
+    Habit.findOneAndUpdate({_id: req.params.habitID}, req.body, {new: true}, (err, habit) => {
         if (err)
             res.send(err);
         res.json(habit);
@@ -30,7 +30,7 @@ export let update_habit = (req, res) => {
 
 export let delete_habit = (req, res) => {
     Habit.remove({
-        _id: req.params.habitId
+        _id: req.params.habitID
     }, (err, habit) => {
         if (err)
             res.send(err);
@@ -39,7 +39,7 @@ export let delete_habit = (req, res) => {
 };
 
 export let get_habit = (req, res) => {
-    Habit.find({ _id: req.params.habitId}, (err, habit) => {
+    Habit.find({ _id: req.params.habitID}, (err, habit) => {
         if (err)
             res.send(err);
         res.json(habit);
@@ -47,36 +47,25 @@ export let get_habit = (req, res) => {
 };
 
 export let user_list_all_habits = (req, res) => {
-    Habit.find({userId: req.params.userId}, (err, habit) => {
+    Habit.find({userID: req.params.userID}, (err, habit) => {
         if (err)
             res.send(err);
         res.json(habit);
     });
 };
 
-export let user_get_habit = (req, res) => {
-    Habit.find({ _id: req.params.habitId, userId: req.params.userId }, (err, habit) => {
+export let user_delete_all_habits = (req, res) => {
+    Habit.remove({ userID: req.params.userID }, (err, habit) => {
         if (err)
             res.send(err);
-        res.json(habit);
+        res.json({ message: "Habits successfully deleted" });
     });
 };
 
-export let user_update_habit = (req, res) => {
-    Habit.findOneAndUpdate({ _id: req.params.habitId, userId: req.params.userId }, req.body, { new: true }, (err, habit) => {
-        if (err)
-            res.send(err);
-        res.json(habit);
-    });
+export let add_score = (req, res) => {
+    //Run Algorithm in increase mode
 };
 
-export let user_delete_habit = (req, res) => {
-    Habit.remove({
-        _id: req.params.habitId,
-        userId: req.params.userId
-    }, (err, habit) => {
-        if (err)
-            res.send(err);
-        res.json({ message: "Habit successfully deleted" });
-    });
+export let lower_score = (req, res) => {
+    //Run Algorithm in decrease mode
 };
