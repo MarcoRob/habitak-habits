@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _express = require("express");
@@ -28,6 +28,10 @@ var _habitsRoutes = require("./routes/habitsRoutes");
 
 var _habitsRoutes2 = _interopRequireDefault(_habitsRoutes);
 
+var _cors = require("cors");
+
+var _cors2 = _interopRequireDefault(_cors);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -44,6 +48,17 @@ app.set("port", process.env.PORT || 3000);
 var mongoUrl = process.env.MONGODB_URI;
 _mongoose2.default.Promise = global.Promise;
 _mongoose2.default.connect(mongoUrl);
+
+var options = {
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+    credentials: true,
+    methods: "GET, HEAD, OPTIONS, PUT, PATCH, POST, DELETE",
+    origin: "*",
+    preflightContinue: false
+};
+
+// use cors middleware
+app.use((0, _cors2.default)(options));
 
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));

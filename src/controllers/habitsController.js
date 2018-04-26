@@ -1,5 +1,6 @@
 'use strict';
 import mongoose from 'mongoose';
+import * as ScoreAlgorithm from './scoreAlgorithm';
 
 var Habit = mongoose.model('Habits');
 
@@ -63,9 +64,17 @@ export let user_delete_all_habits = (req, res) => {
 };
 
 export let add_score = (req, res) => {
-    //Run Algorithm in increase mode
+    Habit.find({ _id: req.params.habitID }, (err, habit) => {
+        if (err)
+            res.send(err);
+        ScoreAlgorithm.increaseScore(habit);
+    });
 };
 
 export let lower_score = (req, res) => {
-    //Run Algorithm in decrease mode
+    Habit.find({ _id: req.params.habitID }, (err, habit) => {
+        if (err)
+            res.send(err);
+        ScoreAlgorithm.decreaseScore(habit);
+    });
 };

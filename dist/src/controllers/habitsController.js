@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.user_delete_habit = exports.user_update_habit = exports.user_get_habit = exports.user_list_all_habits = exports.get_habit = exports.delete_habit = exports.update_habit = exports.create_habit = exports.list_all_habits = undefined;
+exports.lower_score = exports.add_score = exports.user_delete_all_habits = exports.user_list_all_habits = exports.get_habit = exports.delete_habit = exports.update_habit = exports.create_habit = exports.list_all_habits = undefined;
 
 var _mongoose = require('mongoose');
 
@@ -29,7 +29,7 @@ var create_habit = exports.create_habit = function create_habit(req, res) {
 };
 
 var update_habit = exports.update_habit = function update_habit(req, res) {
-    Habit.findOneAndUpdate({ _id: req.params.habitId }, req.body, { new: true }, function (err, habit) {
+    Habit.findOneAndUpdate({ _id: req.params.habitID }, req.body, { new: true }, function (err, habit) {
         if (err) res.send(err);
         res.json(habit);
     });
@@ -37,7 +37,7 @@ var update_habit = exports.update_habit = function update_habit(req, res) {
 
 var delete_habit = exports.delete_habit = function delete_habit(req, res) {
     Habit.remove({
-        _id: req.params.habitId
+        _id: req.params.habitID
     }, function (err, habit) {
         if (err) res.send(err);
         res.json({ message: "Habit successfully deleted" });
@@ -45,39 +45,30 @@ var delete_habit = exports.delete_habit = function delete_habit(req, res) {
 };
 
 var get_habit = exports.get_habit = function get_habit(req, res) {
-    Habit.find({ _id: req.params.habitId }, function (err, habit) {
+    Habit.find({ _id: req.params.habitID }, function (err, habit) {
         if (err) res.send(err);
         res.json(habit);
     });
 };
 
 var user_list_all_habits = exports.user_list_all_habits = function user_list_all_habits(req, res) {
-    Habit.find({ userId: req.params.userId }, function (err, habit) {
+    Habit.find({ userID: req.params.userID }, function (err, habit) {
         if (err) res.send(err);
         res.json(habit);
     });
 };
 
-var user_get_habit = exports.user_get_habit = function user_get_habit(req, res) {
-    Habit.find({ _id: req.params.habitId, userId: req.params.userId }, function (err, habit) {
+var user_delete_all_habits = exports.user_delete_all_habits = function user_delete_all_habits(req, res) {
+    Habit.remove({ userID: req.params.userID }, function (err, habit) {
         if (err) res.send(err);
-        res.json(habit);
+        res.json({ message: "Habits successfully deleted" });
     });
 };
 
-var user_update_habit = exports.user_update_habit = function user_update_habit(req, res) {
-    Habit.findOneAndUpdate({ _id: req.params.habitId, userId: req.params.userId }, req.body, { new: true }, function (err, habit) {
-        if (err) res.send(err);
-        res.json(habit);
-    });
+var add_score = exports.add_score = function add_score(req, res) {
+    //Run Algorithm in increase mode
 };
 
-var user_delete_habit = exports.user_delete_habit = function user_delete_habit(req, res) {
-    Habit.remove({
-        _id: req.params.habitId,
-        userId: req.params.userId
-    }, function (err, habit) {
-        if (err) res.send(err);
-        res.json({ message: "Habit successfully deleted" });
-    });
+var lower_score = exports.lower_score = function lower_score(req, res) {
+    //Run Algorithm in decrease mode
 };

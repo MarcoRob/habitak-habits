@@ -17,9 +17,9 @@ export default function (app) {
         .get(habits.user_list_all_habits)
         .delete(habits.user_delete_all_habits);
 
-    app.route('/habits/addscore')
+    app.route('/habits/:habitID/addscore')
         .post(habits.add_score);
 
-    app.route('/habits/lowerscore')
+    app.route('/habits/:habitID/lowerscore')
         .post(habits.lower_score);
 }

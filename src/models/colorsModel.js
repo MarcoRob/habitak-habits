@@ -37,3 +37,10 @@ for(var color in ColorModel) {
 export const colorList = colList;
 
 export const colorDefault = ColorModel.orange.value;
+
+export const getNewRange = (score) => {
+    for(var color in ColorModel) {
+        if (score >= color.minRange && score < color.maxRange)
+            return color;
+    }
+}
