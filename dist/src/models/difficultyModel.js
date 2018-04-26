@@ -18,12 +18,6 @@ var DifficultiesModel = exports.DifficultiesModel = {
     }
 };
 
-var diffList = [];
-
-for (var difficulty in DifficultiesModel) {
-    diffList.push(difficulty.name);
-}
-
-var difficultyList = exports.difficultyList = diffList;
+var difficultyList = exports.difficultyList = ["easy", "medium", "hard"];
 
 var defaultDifficulty = exports.defaultDifficulty = "medium";

@@ -18,10 +18,28 @@ export let findObject = (queryObject, callback) => {
     Habit.find(correctedQuery, (err, habit) => {
         if (err)
             return callback(err);
-        if (typeof callback == "function")
+        if (typeof callback == "function") {
+            if (!habit.length)
+                return callback(new Error("No item found"));
             return callback(null, habit);
+        }
         else
-            return new Error("Passed parameter isn't a callback.");
+            return new Error("Passed parameter isn't a callback");
+    });
+}
+
+export let findOneObject = (queryObject, callback) => {
+    let correctedQuery = changeQueryIdName(queryObject);
+    Habit.findOne(correctedQuery, (err, habit) => {
+        if (err)
+            return callback(err);
+        if (typeof callback == "function") {
+            if (!habit)
+                return callback(new Error("No item found"));
+            return callback(null, habit);
+        }
+        else
+            return new Error("Passed parameter isn't a callback");
     });
 }
 
@@ -30,10 +48,13 @@ export let removeObject = (queryObject, callback) => {
     Habit.remove(correctedQuery, (err, habit) => {
         if (err)
             return callback(err);
-        if (typeof callback == "function")
+        if (typeof callback == "function") {
+            if(habit.n == 0)
+                return callback(new Error("No document deleted"))
             return callback(null, { message: "Habit successfully deleted" });
+        }
         else
-            return new Error("Passed parameter isn't a callback.");
+            return new Error("Passed parameter isn't a callback");
     });
 }
 
@@ -42,10 +63,13 @@ export let updateObject = (queryObject, updatedValues, callback) => {
     Habit.findOneAndUpdate(correctedQuery, updatedValues, { new: true }, (err, habit) => {
         if (err)
             return callback(err);
-        if (typeof callback == "function")
+        if (typeof callback == "function") {
+            if (!habit)
+                return callback(new Error("No item found"));
             return callback(null, habit);
+        }
         else
-            return new Error("Passed parameter isn't a callback.");
+            return new Error("Passed parameter isn't a callback");
     });
 }
 
@@ -57,6 +81,6 @@ export let createObject = (newObject, callback) => {
         if (typeof callback == "function")
             return callback(null, habit);
         else
-            return new Error("Passed parameter isn't a callback.");
+            return new Error("Passed parameter isn't a callback");
     });
 }

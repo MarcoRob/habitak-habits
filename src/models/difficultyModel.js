@@ -14,12 +14,6 @@ export const DifficultiesModel = {
     }
 }
 
-let diffList = []
-
-for(var difficulty in DifficultiesModel) {
-    diffList.push(difficulty.name);
-}
-
-export const difficultyList = diffList;
+export const difficultyList = ["easy", "medium", "hard"];
 
 export const defaultDifficulty = "medium";

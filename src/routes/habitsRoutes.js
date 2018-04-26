@@ -18,8 +18,8 @@ export default function (app) {
         .delete(habits.user_delete_all_habits);
 
     app.route('/habits/:habitID/addscore')
-        .post(habits.add_score);
+        .get(habits.add_score);
 
     app.route('/habits/:habitID/lowerscore')
-        .post(habits.lower_score);
+        .get(habits.lower_score);
 }
